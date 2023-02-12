@@ -1,0 +1,11 @@
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = group
+            artifactId = 'utils'
+            version = '1.3.5'
+
+            from components.java
+        }
+    }
+}

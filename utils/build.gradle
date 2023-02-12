@@ -1,0 +1,43 @@
+import org.gradle.api.internal.tasks.execution.TaskExecution
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+java {
+    sourceCompatibility(JavaVersion.VERSION_1_8)
+    targetCompatibility(JavaVersion.VERSION_1_8)
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+group 'ru.clevertec'
+version '1.3.5'
+
+
+dependencies {
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+apply from: 'publish_script.gradle'
+apply from: 'build_script.gradle'
+
+
+
+gradle.getTaskGraph().whenReady { TaskExecutionGraph graph ->
+    println "--Graph--"
+    graph.allTasks.each {
+        println "${it.name}"
+    }
+}

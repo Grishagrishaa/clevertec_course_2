@@ -1,0 +1,14 @@
+
+task copyAllDependencies(type: Copy) {
+    from(configurations.runtimeClasspath.files)
+    into("$buildDir/libs/lib")
+}
+
+jar {// - - > publish after check
+    finalizedBy publishToMavenLocal, copyAllDependencies
+
+    manifest {
+        attributes('Implementation-Title': project.name,
+                   'Implementation-Version': project.version)
+    }
+}

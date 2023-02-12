@@ -1,0 +1,18 @@
+def files = configurations.runtimeClasspath.files
+
+task copyAllDependencies(type: Copy) {
+    from(files)
+    into("$buildDir/libs/lib")
+}
+
+jar {
+    finalizedBy(copyAllDependencies)
+    def jarsNames = files.collect { "lib/$it.name" }
+
+    manifest {
+        attributes('Main-Class' : mainClassName,
+                   'Class-Path' : jarsNames.join(' '),
+                   'Implementation-Title': project.name,
+                   'Implementation-Version': project.version)
+    }
+}

@@ -1,0 +1,7 @@
+/.idea/
+/utils/.gradle/
+/multiProject/.gradle/
+.DS_Store
+/utils/build/
+/multiProject/api/build/
+/multiProject/core/build/
