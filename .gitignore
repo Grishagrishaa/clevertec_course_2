@@ -5,3 +5,10 @@
 /utils/build/
 /multiProject/api/build/
 /multiProject/core/build/
+/standalonePlugin/build/
+/standalonePlugin/.idea/
+/standalonePlugin/.gradle/
+/standalonePlugin/src/test/
+/lib/
+/myStandalonePlugin/build/
+/myStandalonePlugin/.gradle/

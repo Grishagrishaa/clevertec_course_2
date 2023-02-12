@@ -1,0 +1,41 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'groovy'
+    id 'maven-publish'
+}
+
+gradlePlugin {
+    plugins {
+        simplePlugin {
+            id = 'ru.clevertec.standalonePlugin'
+            implementationClass = 'ru.clevertec.standalonePlugin.CopyPlugin'
+        }
+    }
+}
+
+group 'ru.clevertec'
+version '1.5'
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+}
+
+jar.finalizedBy(publishToMavenLocal, publish)
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
